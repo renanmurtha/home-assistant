@@ -2,7 +2,7 @@
 #### Alteração obrigatória: ss_id, pass, ss_id_, pass_
 #### Mandatory change: ss_id, pass, ss_id_, pass_
 substitutions:
-   ss_id: "princial_wifi_nome-main_wifi_name"
+  ss_id: "princial_wifi_nome-main_wifi_name"
   pass: "princial_wifi_senha-main_wifi_password"
   ss_id_: "backup_wifi_nome-backup_wifi_name"
   pass_: "backup_wifi_senha-backup_wifi_password"
