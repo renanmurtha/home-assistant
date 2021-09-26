@@ -1,0 +1,17 @@
+apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get autoclean -y && apt-get autoremove -y && apt install unzip -y
+
+install.sh script:
+
+wget https://github.com/whiskerz007/proxmox_hassos_install/raw/master/install.sh
+
+edit the install file:
+sed '/*"gz") gunzip -f $FILE;;/a\ \ *"zip") unzip -o $FILE;;' install.sh > temp.sh
+mv temp.sh install.sh
+chmod 755 install.sh
+Now you can run install.sh:
+./install.sh
+
+
+Fonte (nova versão): https://github.com/whiskerz007/proxmox_hassos_install/issues/113
+
+Tutorial: Install Hassio VM on Proxmox with one simple line
