@@ -1,0 +1,37 @@
+-- Para criar o banco de dados, e o usuário externo com permissões somente para banco do HASSIO; execute o script abaixo diretamente no MySQL (Acredito que sirva também para o MariaDB.
+O usário em questão servirá também para gerenciamento externo. 
+Caso tenha outro usuário que gerencie todos os bancos, altere os '%' por 'localhost', assim o usuário 'user_hassio', terá acesso somente local (acesso fisicamente no servidor).
+
+-- To create the database, and the external user with permissions only for the HASSIO database; run the script below directly in MySQL (I believe it also works for MariaDB.
+The user in question will also serve for external management.
+If you have another user that manages all the databases, change the '%' by 'localhost', so the user 'user_hassio' will have only local access (physical access on the server).
+
+ 
+  -- Criar usuário com acesso externo (somente ao banco do HASSIO)
+  -- Create user with external access (only to HASSIO database)
+    
+    CREATE USER 'user_hassio'@'%' IDENTIFIED BY 'SUA_SENHA_SEGURA';
+    GRANT ALL ON db_hassio.* TO 'user_hassio'@'%';
+    FLUSH PRIVILEGES;
+ 
+  -- Criar banco de dados para o HASSIO
+  -- Create database for HASSIO
+  
+    CREATE DATABASE db_hassio;
+    USE db_hassio;
+    
+    
+    -- Adicionar o trecho a baixo no arquivo /config/configuration.yaml
+    -- Add the snippet below in the /config/configuration.yaml file
+    -- https://www.home-assistant.io/integrations/recorder
+
+#Banco de dados externo
+#External database
+
+recorder:
+  db_url: mysql://user_hassio:SUA_SENHA_SEGURA@SEU_IP/db_hassio?charset=utf8mb4
+  purge_interval: 2
+  purge_keep_days: 5
+ 
+
+
